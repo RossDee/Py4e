@@ -31,11 +31,11 @@ G_j = 1 - E_j    #计算差异系数
 W_j = G_j / sum(G_j)   #计算权重
 WW= pd.Series(W_j, index=data.columns, name='指标权重')
 #print(WW)
-Y_ij.to_excel("Y_ij.xls",sheet_name='Y_ij')
-WW.to_excel("WW.xls",sheet_name='WW')
+Y_ij.to_excel("Y_ij.xlsx",sheet_name='Y_ij')
+WW.to_excel("WW.xlsx",sheet_name='WW',index=False)
 
 # transpose x,y and print the shape
-wdf = pd.read_excel('WW.xls').transpose()
+wdf = pd.read_excel('WW.xlsx').transpose()
 print(wdf)
 weightArray = wdf.values
 print(wdf.shape[1],wdf.shape[0])

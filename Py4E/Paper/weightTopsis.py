@@ -1,32 +1,35 @@
-from cv2 import normalize
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import Normalizer
-df= pd.read_excel('rawdata.xlsx',sheet_name='raw')
+df= pd.read_excel('rawdata.xlsx',sheet_name='raw') #read raw data
 # delete index column
-df1 = df.drop(labels='a',axis=1)
+df1 = df.drop(labels='a',axis=1) #
 # change to array values 
-array = df1.values
+array = df1.values #transfer to array for further processing
 
 #import weight data
-wdf = pd.read_excel('WW.xls').transpose()
-weightArray = wdf.values
-print(wdf.shape[1],wdf.shape[0])
+wdf = pd.read_excel('WW.xlsx') # read weight dataframe
+weightArray = np.array(wdf) # tranfer weight values
+print('==',wdf.shape[1],wdf.shape[0]) 
 
 #df.shape[0] is the number of rows
 
 # normalize 
-dataNorm = Normalizer(norm='l2').fit(array)
+dataNorm = Normalizer(norm='l2').fit(array) # use l2 normalizer mathod ,
 # transform to
 dataNormed = dataNorm.transform(array)
 
 normdf = pd.DataFrame(dataNormed)
-print(normdf.shape[1],normdf.shape[0])
-normdf.to_excel('normdata.xlsx')
-print(len(dataNormed))
+print('===',normdf.shape[1],normdf.shape[0])
+normdf.to_excel('normdata.xlsx') # export excel normalized data with weight
+print('====',len(dataNormed))
+print('=====',dataNormed.shape[0])
+print('===**==',dataNormed.shape[1])
+print('===**==',dataNormed[2,1],weightArray[2])
 
-for i in range(normdf.shape[0]):
-    for j in range(normdf.shape[1]):
+
+for i in range(dataNormed.shape[0]):
+    for j in range(dataNormed.shape[1]):
         dataNormed[i,j] *= weightArray[j]
 
 norm_weigh_df = pd.DataFrame(dataNormed)
@@ -70,3 +73,7 @@ def ranking(data):
 
 ranking(worst_similarity)
 ranking(best_similarity)
+
+
+# visulization 
+from matplotlib import pyplot as plt
