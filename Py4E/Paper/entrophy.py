@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-data=pd.read_excel('Py4E/Paper/rawdata.xlsx', sheet_name=0,header=0,index_col=0)
+data=pd.read_excel('rawdata.xlsx', sheet_name=0,header=0,index_col=0)
 m,n=data.shape  #获取行数m和列数n
 #熵权法计算
 def Y_ij(data1):   #矩阵标准化(min-max标准化)
