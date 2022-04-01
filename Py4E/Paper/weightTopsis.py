@@ -22,10 +22,10 @@ dataNormed = dataNorm.transform(array)
 normdf = pd.DataFrame(dataNormed)
 print('===',normdf.shape[1],normdf.shape[0])
 normdf.to_excel('normdata.xlsx') # export excel normalized data with weight
-print('====',len(dataNormed))
-print('=====',dataNormed.shape[0])
-print('===**==',dataNormed.shape[1])
-print('===**==',dataNormed[2,1],weightArray[2])
+# print('====',len(dataNormed))
+# print('=====',dataNormed.shape[0])
+# print('===**==',dataNormed.shape[1])
+# print('===**==',dataNormed[2,1],weightArray[2])
 
 
 for i in range(dataNormed.shape[0]):
@@ -75,5 +75,3 @@ ranking(worst_similarity)
 ranking(best_similarity)
 
 
-# visulization 
-from matplotlib import pyplot as plt
